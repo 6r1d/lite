@@ -1,16 +1,20 @@
 local common = require "core.common"
 local style = {}
 
-style.padding = { x = common.round(14 * SCALE), y = common.round(7 * SCALE) }
-style.divider_size = common.round(1 * SCALE)
-style.scrollbar_size = common.round(4 * SCALE)
-style.caret_width = common.round(2 * SCALE)
-style.tab_width = common.round(170 * SCALE)
+style.set_font = function()
+  style.padding = { x = common.round(14 * style.fscale), y = common.round(7 * style.fscale) }
+  style.divider_size = common.round(1 * style.fscale)
+  style.scrollbar_size = common.round(4 * style.fscale)
+  style.caret_width = common.round(2 * style.fscale)
+  style.tab_width = common.round(170 * style.fscale)
+  style.font = renderer.font.load(EXEDIR .. "/data/fonts/font.ttf", 14 * style.fscale)
+  style.big_font = renderer.font.load(EXEDIR .. "/data/fonts/font.ttf", 34 * style.fscale)
+  style.icon_font = renderer.font.load(EXEDIR .. "/data/fonts/icons.ttf", 14 * style.fscale)
+  style.code_font = renderer.font.load(EXEDIR .. "/data/fonts/monospace.ttf", 13.5 * style.fscale)
+end
 
-style.font = renderer.font.load(EXEDIR .. "/data/fonts/font.ttf", 14 * SCALE)
-style.big_font = renderer.font.load(EXEDIR .. "/data/fonts/font.ttf", 34 * SCALE)
-style.icon_font = renderer.font.load(EXEDIR .. "/data/fonts/icons.ttf", 14 * SCALE)
-style.code_font = renderer.font.load(EXEDIR .. "/data/fonts/monospace.ttf", 13.5 * SCALE)
+style.fscale = SCALE
+style.set_font()
 
 style.background = { common.color "#2e2e32" }
 style.background2 = { common.color "#252529" }
